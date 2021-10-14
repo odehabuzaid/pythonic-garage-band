@@ -2,7 +2,7 @@
 
 
 
-from abc import abstractclassmethod
+from abc import abstractclassmethod, abstractmethod
 
 
 class Musician:
@@ -12,6 +12,8 @@ class Musician:
         return "| %s |" % self.name    
     def __str__(self):
         return "| %s |" % self.name
+
+
 
 
 class Band(Musician):
@@ -32,22 +34,9 @@ class Band(Musician):
 
     @classmethod
     def to_list(cls):
-        bands = [i[0].name for i in cls.instances]
+        bands = [i.name for i in cls.instances]
         return bands
-    
-@abstractclassmethod
-class Keyboardist(super):
-    def __init__(self,keyboardist) :
-        self.keyboardist = keyboardist
-        
-    @abstractclassmethod
-    def some_methid(self):
-        return '%s' % self.keyboardist
-    
 
-    
-    
-    
     @classmethod
     def to_list(cls):
         return cls.instances
@@ -57,6 +46,15 @@ class Keyboardist(super):
         return "| %s |" % self.name               
 
 
+    @abstractmethod
+    def __keyboardist(self):
+        print('keyboardist')
+
+
+class Keyboardist(Musician):
+    def __init__(self,keyboardist) :
+        self.keyboardist = keyboardist
+        
 class Guitarist(Musician):
     def __str__(self):
         return "My name is %s and I play guitar" % self.name
