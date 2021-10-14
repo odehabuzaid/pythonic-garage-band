@@ -12,10 +12,11 @@ class Musician:
         return "| %s |" % self.name    
     def __str__(self):
         return "| %s |" % self.name
-
-
-
-
+    
+    @abstractmethod
+    def _some_method(self):
+        return self
+        
 class Band(Musician):
     instances = []
     
@@ -36,7 +37,7 @@ class Band(Musician):
     def to_list(cls):
         bands = [i.name for i in cls.instances]
         return bands
-
+    
     @classmethod
     def to_list(cls):
         return cls.instances
@@ -45,15 +46,11 @@ class Band(Musician):
     def __str__(self):
         return "| %s |" % self.name               
 
-
-    @abstractmethod
-    def __keyboardist(self):
-        print('keyboardist')
-
-
 class Keyboardist(Musician):
-    def __init__(self,keyboardist) :
-        self.keyboardist = keyboardist
+    def __init__(Musician,self,keyboardist) :
+        self.self = keyboardist
+
+    
         
 class Guitarist(Musician):
     def __str__(self):
