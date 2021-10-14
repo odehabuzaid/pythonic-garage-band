@@ -1,21 +1,52 @@
 
+
+
+
+from abc import abstractclassmethod
+
+
 class Musician:
     def __init__(self, name):
         self.name = name
     def __repr__(self): 
         return "| %s |" % self.name    
     def __str__(self):
-        return "| %s |" % self.name    
+        return "| %s |" % self.name
+
 
 class Band(Musician):
     instances = []
+    
     def __init__(self, name, members):
         self.name = name
         self.members = members
-        self.instances.append({"name":self.name,"members":self.members})
+        self.instances.append(self)
     def play_solos(self):
         solos = [i.play_solo() for i in self.members]
         return solos
+
+    def __str__(self):
+        return '%s' % self.name
+    def __repr__(self):
+        return '%s' % self.name
+
+    @classmethod
+    def to_list(cls):
+        bands = [i[0].name for i in cls.instances]
+        return bands
+    
+@abstractclassmethod
+class Keyboardist(super):
+    def __init__(self,keyboardist) :
+        self.keyboardist = keyboardist
+        
+    @abstractclassmethod
+    def some_methid(self):
+        return '%s' % self.keyboardist
+    
+
+    
+    
     
     @classmethod
     def to_list(cls):

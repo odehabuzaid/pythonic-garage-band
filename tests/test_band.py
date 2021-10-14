@@ -1,6 +1,7 @@
 import pytest
 from pythonic_garage_band.pythonic_garage_band import (Band, Bassist, Drummer,
-                                                       Guitarist, Musician)
+                                                       Guitarist, Keyboardist,
+                                                       Musician)
 
 
 # @pytest.mark.skip("todo")
@@ -79,7 +80,7 @@ def test_drummer():
     assert ginger.get_instrument() == "drums"
 
 
-@pytest.mark.skip("todo")
+
 def test_instruments(one_band):
     instruments = ["guitar", "bass", "drums"]
     for i, member in enumerate(one_band.members):
@@ -125,21 +126,21 @@ def test_play_solos_for_whole_band(one_band):
     assert solos[2] == "rattle boom crash"
 
 
-@pytest.mark.skip("todo")
+
 def test_class_tracks_instances():
     assert Band.to_list() == []
     the_nobodies = Band("The Nobodies", [])
     assert len(Band.instances) == 1
-    assert Band.instances[0] == the_nobodies
+    assert Band.instances[0]== the_nobodies
 
 
-@pytest.mark.skip("todo")
+
 def test_to_list():
     assert Band.to_list() == []
     the_nobodies = Band("The Nobodies", [])
     all_bands = Band.to_list()
     assert len(all_bands) == 1
-    assert all_bands[0] == the_nobodies
+    assert all_bands[0]  == the_nobodies
 
 
 #######################
@@ -215,18 +216,18 @@ def test_from_yaml():
     assert bands[1]["name"] == "The Pixies"
 
 
-# @pytest.mark.skip("stretch")
-# def test_abstract_musician():
-#     with pytest.raises(TypeError):
-#         Musician("nobody", "nothing", "silence")
+
+def test_abstract_musician():
+    with pytest.raises(TypeError):
+        Musician("nobody", "nothing", "silence")
 
 
-# @pytest.mark.skip("stretch")
-# def test_incomplete_keyboardist():
-#     with pytest.raises(TypeError) as e:
-#         Keyboardist("Booker T. Jones")
 
-#     assert (
-#         repr(e)
-#         == """<ExceptionInfo TypeError("Can't instantiate abstract class Keyboardist with abstract method some_method_that_must_be_implemented_in_base_class") tblen=1>"""  # noqa: E501
-#     )
+def test_incomplete_keyboardist():
+    with pytest.raises(TypeError) as e:
+        Keyboardist("Booker T. Jones")
+    
+    
+        
+    assert (repr(e)) == """<ExceptionInfo TypeError("Can't instantiate abstract class Keyboardist with abstract method some_method_that_must_be_implemented_in_base_class") tblen=1>"""  # noqa: E501
+   
