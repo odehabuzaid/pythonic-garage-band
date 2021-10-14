@@ -1,5 +1,3 @@
-# import json
-
 import pytest
 from pythonic_garage_band.pythonic_garage_band import (Band, Bassist, Drummer,
                                                        Guitarist, Musician)
@@ -81,7 +79,7 @@ def test_drummer():
     assert ginger.get_instrument() == "drums"
 
 
-# @pytest.mark.skip("todo")
+@pytest.mark.skip("todo")
 def test_instruments(one_band):
     instruments = ["guitar", "bass", "drums"]
     for i, member in enumerate(one_band.members):
@@ -118,7 +116,7 @@ def test_band_members(one_band):
     assert one_band.members[2].name == "Dave Grohl"
 
 
-@pytest.mark.skip("todo")
+
 def test_play_solos_for_whole_band(one_band):
     solos = one_band.play_solos()
     assert len(solos) == 3
@@ -174,6 +172,7 @@ def one_band():
     return some_band
 
 
+
 @pytest.fixture(autouse=True)
 def clean():
     """runs before each test automatically.
@@ -189,28 +188,31 @@ def clean():
 # Stretch
 #######################
 
+import json
+
+import yaml
 
 
-# def test_from_file():
-#     with open("assets/bands.json") as f:
-#         bands = json.loads(f.read())
-
-#     assert len(bands) == 1
-
-#     nirvana_data = bands[0]
-
-#     nirvana = Band(nirvana_data["name"], nirvana_data["members"])
+def test_from_file():
+    with open("assets/bands.json") as f:
+        bands = json.loads(f.read())
     
-#     assert nirvana.name == "Nirvana"
+    assert len(bands) == 1
+    
+    nirvana_data = bands[0]
+    
+    nirvana = Band(nirvana_data["name"], nirvana_data["members"])
+    
+    assert nirvana.name == "Nirvana"
 
 
-# @pytest.mark.skip("stretch")
-# def test_from_yaml():
-#     bands = yaml.safe_load(open("assets/bands.yml"))
 
-#     assert bands[0]["name"] == "Nirvana"
+def test_from_yaml():
+    bands = yaml.safe_load(open("assets/bands.yml"))
 
-#     assert bands[1]["name"] == "The Pixies"
+    assert bands[0]["name"] == "Nirvana"
+
+    assert bands[1]["name"] == "The Pixies"
 
 
 # @pytest.mark.skip("stretch")

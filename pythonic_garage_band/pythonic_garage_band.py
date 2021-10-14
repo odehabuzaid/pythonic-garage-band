@@ -12,13 +12,11 @@ class Band(Musician):
     def __init__(self, name, members):
         self.name = name
         self.members = members
-        self.instances.append({"name": self.name, "members": self.members})
-    def play_solo(self):
-        for member in self.members:
-            member.play_solo()
+        self.instances.append({"name":self.name,"members":self.members})
+    def play_solos(self):
+        solos = [i.play_solo() for i in self.members]
+        return solos
     
-
-
     @classmethod
     def to_list(cls):
         return cls.instances
@@ -60,6 +58,3 @@ class Bassist(Musician):
         return "bass"
     def play_solo(self):
         return "bom bom buh bom"
-
-
-

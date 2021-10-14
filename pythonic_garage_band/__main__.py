@@ -5,19 +5,12 @@ if __name__ == '__main__':
     amir = Guitarist('Amir Eid')
     Tamer = Drummer('Tamer Hashem')
     adam = Bassist('Adam El Alfy')
-    band = Band('Cairokee', [amir, Tamer, adam])
     
+    band = Band('Cairokee', [amir, Tamer, adam])
+    print(len(band))
     
     print(band.to_list())
     print('the Leader :',amir)
     print()
-    print(amir.play_solo())
+    print(amir.play_solos())
     print(amir.get_instrument())
-    
-    Joan = Guitarist('Joan Jett')
-    Sheila = Drummer('Sheila E.')
-    Meshell = Bassist('Meshell Ndegeocello')
-    
-    print(Joan)
-    print(Sheila)
-    print(Meshell) 
